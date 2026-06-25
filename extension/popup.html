@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Faceshion Try-On</title>
+    <style>
+      :root { color-scheme: light dark; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        margin: 0;
+        width: 320px;
+        background: #0b0b0f;
+        color: #f4f4f5;
+      }
+      .wrap { padding: 18px 18px 16px; }
+      .row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+      img.logo { width: 36px; height: 36px; border-radius: 8px; }
+      h1 { font-size: 15px; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+      p { font-size: 12.5px; line-height: 1.45; color: #a1a1aa; margin: 0 0 14px; }
+      button {
+        width: 100%;
+        border: 0;
+        background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+        color: white;
+        padding: 11px 14px;
+        font-size: 13.5px;
+        font-weight: 600;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      button:hover { opacity: 0.92; }
+      .hint { margin-top: 10px; font-size: 11.5px; color: #71717a; text-align: center; }
+      kbd {
+        background: #27272a; border: 1px solid #3f3f46; border-radius: 4px;
+        padding: 1px 5px; font-size: 11px; font-family: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="row">
+        <img class="logo" src="icon-128.png" alt="Faceshion" />
+        <h1>Faceshion · Right-Click Try-On</h1>
+      </div>
+      <p>Açık sekmedeki ürünü Faceshion'a gönder ve AI ile kendi üzerinde dene.</p>
+      <button id="go">Bu ürünü dene</button>
+      <div class="hint">İpucu: Her sayfada ürüne <kbd>sağ tık</kbd> → "Faceshion ile dene".</div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
