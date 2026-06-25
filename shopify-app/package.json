@@ -1,0 +1,14 @@
+{
+  "name": "faceshion-shopify-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Faceshion Try-On — Shopify Theme App Extension",
+  "scripts": {
+    "dev": "shopify app dev",
+    "deploy": "shopify app deploy",
+    "info": "shopify app info"
+  },
+  "devDependencies": {
+    "@shopify/cli": "latest"
+  }
+}

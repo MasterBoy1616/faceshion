@@ -1,0 +1,83 @@
+{% comment %}
+  Faceshion Try-On — Theme App Extension block
+  Merchant adds this block to the product template from the theme editor.
+  It renders the "Try on me" button and loads faceshion.app/embed.js,
+  which opens the AI try-on as an overlay on the product page.
+{% endcomment %}
+
+{% assign faceshion_product_url = canonical_url %}
+{% assign faceshion_product_image = '' %}
+{% if product %}
+  {% assign faceshion_product_url = shop.url | append: product.url %}
+  {% assign faceshion_product_image = product.featured_image | image_url: width: 1200 %}
+{% endif %}
+
+<div
+  class="faceshion-tryon-wrapper"
+  style="margin: {{ block.settings.margin_top }}px 0 {{ block.settings.margin_bottom }}px; text-align: {{ block.settings.alignment }};"
+  {{ block.shopify_attributes }}
+>
+  <a
+    class="faceshion-tryon"
+    data-ref="{{ block.settings.merchant_id | escape }}"
+    data-product-url="{{ faceshion_product_url | escape }}"
+    data-product-image="{{ faceshion_product_image | escape }}"
+    data-label="{{ block.settings.button_label | escape }}"
+    href="https://faceshion.app/merchant/tryon?url={{ faceshion_product_url | url_encode }}&ref={{ block.settings.merchant_id | url_encode }}"
+    rel="noopener"
+  >
+    {{ block.settings.button_label }}
+  </a>
+</div>
+
+<script async src="https://faceshion.app/embed.js"></script>
+
+{% schema %}
+{
+  "name": "Try-On Button",
+  "target": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Add an AI-powered \"Try on me\" button to your product page. Shoppers can see themselves wearing the product in seconds."
+    },
+    {
+      "type": "text",
+      "id": "merchant_id",
+      "label": "Faceshion Merchant ID",
+      "info": "Find this in your Faceshion dashboard at faceshion.app/merchant/integrations"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "✨ Try it on me"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Top spacing",
+      "min": 0, "max": 40, "step": 2, "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Bottom spacing",
+      "min": 0, "max": 40, "step": 2, "unit": "px",
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

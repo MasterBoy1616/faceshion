@@ -1,0 +1,4 @@
+api_version = "2025-01"
+name = "Faceshion Try-On"
+handle = "faceshion-tryon"
+type = "theme"

@@ -1,0 +1,32 @@
+# Faceshion · Shopify App configuration
+# This file is consumed by Shopify CLI (`shopify app dev` / `shopify app deploy`).
+# Fill in `client_id` after you create the app in your Shopify Partners dashboard:
+#   https://partners.shopify.com → Apps → Create app → "Create app manually"
+
+name = "Faceshion Try-On"
+handle = "faceshion-tryon"
+application_url = "https://faceshion.app"
+embedded = false
+extension_directories = ["extensions/*"]
+
+# Replace with the Client ID from Partners → App settings → API credentials
+client_id = "590fedddc7ae0e06efe127cac8367133"
+
+[access_scopes]
+# Theme app extension does not need write scopes. read_themes is enough so
+# merchants can add the Faceshion block from the theme editor.
+scopes = "read_themes,read_products"
+
+[auth]
+redirect_urls = [
+  "https://faceshion.app/api/public/shopify/auth/callback"
+]
+
+[webhooks]
+api_version = "2025-01"
+
+[pos]
+embedded = false
+
+[build]
+include_config_on_deploy = true

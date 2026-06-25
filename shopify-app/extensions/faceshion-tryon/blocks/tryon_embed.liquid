@@ -1,0 +1,55 @@
+{% comment %}
+  Faceshion Try-On — App embed block
+  Merchants can enable this from Theme settings → App embeds.
+  It renders only on product pages and shows a floating try-on button.
+{% endcomment %}
+
+{% if product %}
+  {% assign faceshion_product_url = shop.url | append: product.url %}
+  {% assign faceshion_product_image = product.featured_image | image_url: width: 1200 %}
+
+  <div
+    class="faceshion-tryon-embed-wrapper"
+    style="position: fixed; right: 24px; bottom: 24px; z-index: 2147483000;"
+    {{ block.shopify_attributes }}
+  >
+    <a
+      class="faceshion-tryon"
+      data-ref="{{ block.settings.merchant_id | escape }}"
+      data-product-url="{{ faceshion_product_url | escape }}"
+      data-product-image="{{ faceshion_product_image | escape }}"
+      data-label="{{ block.settings.button_label | escape }}"
+      href="https://faceshion.app/merchant/tryon?url={{ faceshion_product_url | url_encode }}&ref={{ block.settings.merchant_id | url_encode }}"
+      rel="noopener"
+    >
+      {{ block.settings.button_label }}
+    </a>
+  </div>
+
+  <script async src="https://faceshion.app/embed.js"></script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Try-On Floating",
+  "target": "body",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Enable a floating AI try-on button on product pages."
+    },
+    {
+      "type": "text",
+      "id": "merchant_id",
+      "label": "Faceshion Merchant ID",
+      "info": "Find this in your Faceshion dashboard at faceshion.app/merchant/integrations"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "✨ Try it on me"
+    }
+  ]
+}
+{% endschema %}
